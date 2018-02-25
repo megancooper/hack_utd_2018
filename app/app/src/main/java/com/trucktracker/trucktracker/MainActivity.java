@@ -72,7 +72,7 @@ public class MainActivity extends FragmentActivity {
             Fragment frag = null;
             switch (position) {
                 case SEARCH:
-                    frag = SearchFragment.newInstance();
+                    frag = WrapperSearchFragment.newInstance();
                     break;
                 case FAVORITES:
                     frag = FavoritesFragment.newInstance();

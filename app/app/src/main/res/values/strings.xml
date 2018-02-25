@@ -11,4 +11,12 @@
     <string name="food_photo">Images of food truck</string>
     <string name="truck_type_placeholder">Truck type placeholder</string>
     <string name="submit_search">Submit Search  </string>
+    <string name="hours_placeholder">Sunday - Friday 8AM–11PM\nSaturday 8AM–12AM</string>
+    <string name="updates">Updates</string>
+    <string name="food_truck_name">Food truck name</string>
+    <string name="address">Address(es)</string>
+    <string name="schedule">Schedule</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="owner">Owner</string>
+    <string name="add_truck">Add Truck</string>
 </resources>
