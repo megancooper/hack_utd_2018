@@ -15,84 +15,92 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 
 
-public class MainActivity extends AppCompatActivity {
-    private static final int PLACE_PICKER_REQUEST = 1;
-    private TextView mName;
-    private TextView mAddress;
-    private TextView mPhoneNumber;
-    private TextView mPriceLevel;
-    private TextView mRating;
-    private TextView mURI;
-    private TextView mAttributions;
+public class MainActivity extends FragmentActivity {
+
+    private ViewPager appViewPager; // controls the navigation between fragments
+    private FragAdapter fragmentAdapter; // adapter to manage fragments
+    private BottomNavigationView bottomNavBar; // bottom navigation bar
+
+    // reference integers
+    private static final int SEARCH = 0, FAVORITES = 1, LOGIN = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mName = (TextView) findViewById(R.id.tv_name);
-        mAddress = (TextView) findViewById(R.id.tv_address);
-        mPhoneNumber = (TextView) findViewById(R.id.tv_phoneNumber);
-        mPriceLevel = (TextView) findViewById(R.id.tv_priceLevel);
-        mRating = (TextView) findViewById(R.id.tv_rating);
-        mURI = (TextView) findViewById(R.id.tv_uri);
-        mAttributions = (TextView) findViewById(R.id.tv_attributions);
-        Button pickerButton = (Button) findViewById(R.id.pickerButton);
-        pickerButton.setOnClickListener(new View.OnClickListener() {
+
+        // get a FragmentManager to access and manage fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        // get ViewPager object to switch between fragment
+        fragmentAdapter = new FragAdapter(fragmentManager);
+        appViewPager = findViewById(R.id.pager);
+        appViewPager.setAdapter(fragmentAdapter);
+
+        // set up bottom navigation
+        bottomNavBar = findViewById(R.id.bottom_navigation);
+        bottomNavBar.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                try{
-                    PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
-                    Intent intent = intentBuilder.build(MainActivity.this);
-                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e){
-                    e.printStackTrace();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_favorites:
+                        appViewPager.setCurrentItem(FAVORITES);
+                        break;
+                    case R.id.action_login:
+                        appViewPager.setCurrentItem(LOGIN);
+                        break;
+                    case R.id.action_search:
+                        appViewPager.setCurrentItem(SEARCH);
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
                 }
+                return true;
             }
         });
+
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == PLACE_PICKER_REQUEST && resultCode == Activity.RESULT_OK){
-            final Place place = PlacePicker.getPlace(this, data);
-            final CharSequence name = place.getName();
-            final CharSequence address = place.getAddress();
-            final CharSequence phoneNumber = place.getPhoneNumber();
-            final int priceLevel = place.getPriceLevel();
-            CharSequence priceTag = "";
-            switch (priceLevel){
-                case 0: priceTag = "$";
-                        break;
-                case 1: priceTag = "$$";
-                        break;
-                case 2: priceTag = "$$$";
-                        break;
-                case 3: priceTag = "$$$$";
-                        break;
-                case 4: priceTag = "$$$$$";
-                        break;
-                default: priceTag = "";
-                        break;
-            }
-            final CharSequence rating = Float.toString(place.getRating());
-            final Uri uri = place.getWebsiteUri();
-            final String uriString = uri.toString();
-            String attributions = (String) place.getAttributions();
-            if(attributions == null){
-                attributions="";
-            }
 
-            mName.setText(name);
-            mAddress.setText(address);
-            mPhoneNumber.setText(phoneNumber);
-            mPriceLevel.setText(priceTag);
-            mRating.setText(rating);
-            mURI.setText(uriString);
-            mAttributions.setText(Html.fromHtml(attributions));
 
-        }else{
-            super.onActivityResult(requestCode, resultCode, data);
+
+    public static class FragAdapter extends FragmentPagerAdapter {
+        // DO NOT MODIFY. Switches between the fragments in the app.
+
+        FragAdapter(FragmentManager fm) { super(fm); }
+
+        @Override
+        public int getCount() { return 3; }
+
+        @Override
+        public Fragment getItem(int position) {
+            Fragment frag = null;
+            switch (position) {
+                case SEARCH:
+                    frag = SearchFragment.newInstance();
+                    break;
+                case FAVORITES:
+                    frag = FavoritesFragment.newInstance();
+                    break;
+                case LOGIN:
+                    frag = LoginFragment.newInstance();
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+            return frag;
         }
     }
+
 }

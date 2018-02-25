@@ -1,52 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.trucktracker.trucktracker.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical" android:padding="4dip"
+android:gravity="center_horizontal"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.trucktracker.trucktracker.MainActivity">
+
+    <!-- ViewPager for navigation -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1">
+    </android.support.v4.view.ViewPager>
+
+    <!-- Bottom navigation bar: Favorites, Search, and Login -->
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_name"
-        android:layout_alignParentTop="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_address"
-        android:layout_below="@id/tv_name" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_phoneNumber"
-        android:layout_below="@id/tv_address" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_priceLevel"
-        android:layout_below="@id/tv_phoneNumber" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_rating"
-        android:layout_below="@id/tv_priceLevel" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_uri"
-        android:layout_below="@id/tv_rating" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Launch Place Picker"
-        android:id="@+id/pickerButton"
-        android:layout_below="@id/tv_uri"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_attributions"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
-</RelativeLayout>
+        android:layout_gravity="start"
+        app:menu="@menu/bottom_navigation_items"/>
+
+</LinearLayout>
