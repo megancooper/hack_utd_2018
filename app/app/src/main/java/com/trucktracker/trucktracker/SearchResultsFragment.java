@@ -4,22 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchResultsFragment extends Fragment {
@@ -43,7 +35,7 @@ public class SearchResultsFragment extends Fragment {
         View v = inflater.inflate(R.layout.search_results_fragment, container, false);
 
         Bundle bundle = getArguments();
-        // TODO: String query = bundle.getString("query");
+        final String query = bundle.getString("query");
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("trucks");
 
@@ -61,7 +53,9 @@ public class SearchResultsFragment extends Fragment {
 
                 ArrayList<Truck> values = new ArrayList<>();
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
-                    values.add(ds.getValue(Truck.class));
+                    Truck t = ds.getValue(Truck.class);
+                    if (t!=null && t.getName().contains(query))
+                        values.add(t);
                 }
                 recyclerView.setAdapter(new RecyclerViewAdapter(values, myRef));
             }
