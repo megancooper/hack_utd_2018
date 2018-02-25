@@ -78,7 +78,7 @@ public class MainActivity extends FragmentActivity {
                     frag = FavoritesFragment.newInstance();
                     break;
                 case LOGIN:
-                    frag = LoginFragment.newInstance();
+                    frag = AccountFragment.newInstance();
                     break;
                 default:
                     throw new IllegalArgumentException();

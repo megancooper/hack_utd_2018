@@ -3,4 +3,23 @@
     <string name="menu_search">Search</string>
     <string name="menu_login">Login</string>
     <string name="action_my_favs">Favorites</string>
+    <string name="truck_tracker">Truck Owner Sign In</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_a_new_account"><u>Create a New Account</u></string>
+    <string name="username">username</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="return_to_login_screen">Return to Login Screen</string>
+    <string name="owner_screen">Owner Screen</string>
+    <string name="add_a_truck">Add A Truck</string>
+    <string name="edit_existing_trucks">Edit Existing Trucks</string>
+    <string name="send_an_update">Send An Update</string>
+    <string name="name">name</string>
+    <string name="address">address</string>
+    <string name="schedule">schedule</string>
+    <string name="phone_number">phone number</string>
+    <string name="add_truck">add truck</string>
+    <string name="back_to_owner_screen">Back to Owner Screen</string>
 </resources>

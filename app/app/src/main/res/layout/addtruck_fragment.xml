@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.trucktracker.trucktracker.MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Add A New Truck"
+        android:textAlignment="center"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="86dp"
+        android:hint="@string/name" />
+    <EditText
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:hint="@string/address"
+        android:id="@+id/et_address"/>
+
+    <EditText
+        android:id="@+id/et_schedule"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:hint="@string/schedule" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:hint="@string/phone_number"
+        android:inputType="phone" />
+
+    <Button
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/addTruckButton"
+        android:text="@string/add_truck"/>
+
+    <TextView
+        android:id="@+id/ownerlink"
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:gravity="center"
+        android:text="@string/back_to_owner_screen"
+        android:textAlignment="center"
+        android:textColor="#4286f4"
+        android:textSize="18sp"/>
+
+
+
+</LinearLayout>
