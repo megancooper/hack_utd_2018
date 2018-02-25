@@ -1,25 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 android:orientation="vertical"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@android:drawable/gallery_thumb">
+android:layout_height="match_parent">
 
-    <!-- The frame layout is here since we will be showing either
-    the empty view or the list view.  -->
-    <FrameLayout
-        android:id="@+id/search_fragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp">
 
-        <!-- Temporary stuff, change this -->
-        <TextView android:id="@+id/text"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="This is the Search fragment!"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/search_food_trucks_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textAutoCorrect|textAutoComplete|textCapSentences"
+                android:hint="@string/enter_food_truck_name"/>
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:id="@+id/search_in_maps_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:text="@string/search_in_maps" />
+        </LinearLayout>
 
-    </FrameLayout>
 
-</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical|center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/food_trucks_nearby"
+                android:textSize="@dimen/large_label"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/nearby_trucks_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="16dp"/>
+            
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

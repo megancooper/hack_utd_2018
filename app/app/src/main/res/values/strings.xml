@@ -3,4 +3,11 @@
     <string name="menu_search">Search</string>
     <string name="menu_login">Login</string>
     <string name="action_my_favs">Favorites</string>
+    <string name="search_by_name">Search by name:</string>
+    <string name="enter_food_truck_name">Enter food truck name</string>
+    <string name="search_in_maps">Search in Maps</string>
+    <string name="food_trucks_nearby">Food Trucks Nearby</string>
+    <string name="truck_name_placeholder">Truck name placeholder</string>
+    <string name="food_photo">Images of food truck</string>
+    <string name="truck_type_placeholder">Truck type placeholder</string>
 </resources>
