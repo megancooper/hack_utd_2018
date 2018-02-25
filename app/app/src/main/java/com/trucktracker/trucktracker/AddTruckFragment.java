@@ -43,7 +43,6 @@ public class AddTruckFragment extends Fragment {
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("trucks");
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,7 +73,10 @@ public class AddTruckFragment extends Fragment {
 
                 String userId = mDatabase.push().getKey();
                 Truck truck = new Truck(name,address,schedule,phone,owner);
-                mDatabase.child(userId).setValue(truck);
+                mDatabase.child("truck").setValue(truck);
+
+
+
 
                 // Do a toast
                 Toast.makeText(getActivity(), "Your New Truck has been added.",
