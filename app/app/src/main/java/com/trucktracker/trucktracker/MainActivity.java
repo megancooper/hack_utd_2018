@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity {
     private ViewPager appViewPager; // controls the navigation between fragments
     private FragAdapter fragmentAdapter; // adapter to manage fragments
     private BottomNavigationView bottomNavBar; // bottom navigation bar
-    public FirebaseAuth auth;
+    public static boolean isLoggedIn;
 
     FragmentManager fragmentManager;
 
@@ -42,8 +42,6 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        auth = FirebaseAuth.getInstance();
 
         // get a FragmentManager to access and manage fragments
         fragmentManager = getSupportFragmentManager();
@@ -98,7 +96,7 @@ public class MainActivity extends FragmentActivity {
                     frag = FavoritesFragment.newInstance();
                     break;
                 case ACCOUNT:
-                    frag = AccountFragment.newInstance();// LoginFragment.newInstance();
+                    frag = AccountFragment.newInstance();
                     break;
                 default:
                     throw new IllegalArgumentException();

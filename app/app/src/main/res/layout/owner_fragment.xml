@@ -2,62 +2,51 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/login_layout"
+    android:id="@+id/signup_layout"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context = "com.trucktracker.trucktracker.MainActivity"
     >
 
-
-
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/ownerTitle"
         android:layout_width="match_parent"
         android:layout_height="103dp"
         android:gravity="center"
-        android:text="@string/truck_tracker"
+        android:text="@string/owner_screen"
         android:textAlignment="center"
         android:textSize="25sp"/>
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:labelFor="@id/email"
-        android:hint="@string/email"
-        android:paddingTop="20dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"/>
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="200dp"
-        android:hint="@string/password"
-        android:labelFor="@id/password"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingTop="30dp"
-        android:ems="10"
-        android:inputType="textPassword"/>
-
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/addtruckButton"
         android:layout_width="200dp"
         android:layout_height="58dp"
         android:layout_gravity="center"
-        android:text="@string/login"/>
+        android:text="@string/add_a_truck"/>
+
+    <Button
+        android:id="@+id/edittruckButton"
+        android:layout_width="200dp"
+        android:layout_height="58dp"
+        android:layout_gravity="center"
+        android:text="@string/edit_existing_trucks"/>
+
+    <Button
+        android:id="@+id/sendupdateButton"
+        android:layout_width="200dp"
+        android:layout_height="58dp"
+        android:layout_gravity="center"
+        android:text="@string/send_an_update"/>
 
     <TextView
-        android:id="@+id/loginlink"
+        android:id="@+id/signoutlink"
         android:layout_width="match_parent"
         android:layout_height="103dp"
         android:gravity="center"
-        android:text="@string/create_a_new_account"
+        android:text="Sign Out"
         android:textAlignment="center"
         android:textColor="#4286f4"
         android:textSize="18sp"/>
-
 
 </LinearLayout>

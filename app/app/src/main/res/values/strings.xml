@@ -12,4 +12,8 @@
     <string name="username">username</string>
     <string name="create_an_account">Create an Account</string>
     <string name="return_to_login_screen">Return to Login Screen</string>
+    <string name="owner_screen">Owner Screen</string>
+    <string name="add_a_truck">Add A Truck</string>
+    <string name="edit_existing_trucks">Edit Existing Trucks</string>
+    <string name="send_an_update">Send An Update</string>
 </resources>

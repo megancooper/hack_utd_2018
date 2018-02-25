@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 /**
  * Created by megan on 2/25/18.
  */
@@ -34,7 +36,14 @@ public class AccountFragment extends Fragment {
 		 * When this container fragment is created, we fill it with our first
 		 * "real" fragment
 		 */
-        transaction.replace(R.id.account_layout, new LoginFragment());
+        // Instantiate Firebase Authentication Instance
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+		if (auth.getCurrentUser() == null) {
+            transaction.replace(R.id.account_layout, new LoginFragment());
+        }
+        else {
+            transaction.replace(R.id.account_layout, new OwnerFragment());
+        }
 
         transaction.commit();
 

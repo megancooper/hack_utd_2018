@@ -61,6 +61,7 @@ public class SignUpFragment extends Fragment {
                 // Instantiate Firebase Authentication Instance
                 final FirebaseAuth auth = FirebaseAuth.getInstance();
 
+
                 EditText Email =(EditText) getView().findViewById(R.id.newEmail);
                 EditText Pass = (EditText) getView().findViewById(R.id.newPassword);
                 EditText User = (EditText) getView().findViewById(R.id.newUsername);
@@ -94,6 +95,12 @@ public class SignUpFragment extends Fragment {
                                                 Toast.LENGTH_SHORT).show();
 
                                         // TODO Load Truck Screen
+                                        FragmentTransaction trans = getFragmentManager()
+                                                .beginTransaction();
+                                        trans.replace(R.id.account_layout, new OwnerFragment());
+                                        trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                        trans.addToBackStack(null);
+                                        trans.commit();
 
                                     } else {
                                         // If sign in fails, display a message to the user.
