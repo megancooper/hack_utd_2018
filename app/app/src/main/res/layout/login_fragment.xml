@@ -21,8 +21,8 @@
         android:textSize="25sp"/>
 
     <ImageView
-        android:layout_width="252dp"
-        android:layout_height="172dp"
+        android:layout_width="218dp"
+        android:layout_height="139dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/truck_tracker_logo" />
 
