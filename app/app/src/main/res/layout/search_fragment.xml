@@ -15,22 +15,34 @@ android:layout_height="match_parent">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/search_food_trucks_edit_text"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textAutoCorrect|textAutoComplete|textCapSentences"
-                android:hint="@string/enter_food_truck_name"/>
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <EditText
+                        android:id="@+id/search_food_trucks_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textAutoCorrect|textAutoComplete|textCapSentences"
+                        android:hint="@string/enter_food_truck_name"/>
+                </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:id="@+id/submitSearchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/submit_search"/>
+            </LinearLayout>
         <Button
             android:id="@+id/search_in_maps_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:text="@string/search_in_maps" />
+            android:text="@string/search_in_maps"
+            android:drawableRight="@drawable/ic_search_white_18dp"/>
         </LinearLayout>
 
 
