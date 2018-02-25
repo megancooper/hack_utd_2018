@@ -17,9 +17,21 @@
     <string name="edit_existing_trucks">Edit Existing Trucks</string>
     <string name="send_an_update">Send An Update</string>
     <string name="name">name</string>
-    <string name="address">address</string>
-    <string name="schedule">schedule</string>
-    <string name="phone_number">phone number</string>
-    <string name="add_truck">add truck</string>
     <string name="back_to_owner_screen">Back to Owner Screen</string>
+    <string name="search_by_name">Search by name:</string>
+    <string name="enter_food_truck_name">Enter food truck name</string>
+    <string name="search_in_maps">Search in Maps</string>
+    <string name="food_trucks_nearby">Food Trucks Nearby</string>
+    <string name="truck_name_placeholder">Truck name placeholder</string>
+    <string name="food_photo">Images of food truck</string>
+    <string name="truck_type_placeholder">Truck type placeholder</string>
+    <string name="submit_search">Submit Search  </string>
+    <string name="hours_placeholder">Sunday - Friday 8AM–11PM\nSaturday 8AM–12AM</string>
+    <string name="updates">Updates</string>
+    <string name="food_truck_name">Food truck name</string>
+    <string name="address">Address(es)</string>
+    <string name="schedule">Schedule</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="owner">Owner</string>
+    <string name="add_truck">Add Truck</string>
 </resources>

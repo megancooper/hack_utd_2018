@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp">
+        <LinearLayout
+            android:id="@+id/food_truck_images"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/truck_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/truck_name_placeholder"
+        android:textSize="@dimen/large_label"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/truck_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hours_placeholder"
+        android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/truck_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/address"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/updates"
+        android:textSize="@dimen/large_label"
+        android:textAlignment="center"
+        android:paddingTop="16dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/updates_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</ScrollView>

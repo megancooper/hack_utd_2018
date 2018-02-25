@@ -10,7 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
-
+// This is the only activity in the entire application
+// the app works by exchanging fragments
 public class MainActivity extends FragmentActivity {
 
     private ViewPager appViewPager; // controls the navigation between fragments
@@ -72,7 +73,7 @@ public class MainActivity extends FragmentActivity {
             Fragment frag = null;
             switch (position) {
                 case SEARCH:
-                    frag = SearchFragment.newInstance();
+                    frag = WrapperSearchFragment.newInstance();
                     break;
                 case FAVORITES:
                     frag = FavoritesFragment.newInstance();

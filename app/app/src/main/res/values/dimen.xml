@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="small_label">16sp</dimen>
+    <dimen name="large_label">20sp</dimen>
+</resources>
