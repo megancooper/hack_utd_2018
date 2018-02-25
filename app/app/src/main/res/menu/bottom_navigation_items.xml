@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item android:id="@+id/action_search"
+        android:title="@string/menu_search"
+        android:icon="@drawable/ic_search_white_24dp" />
+    <item android:id="@+id/action_favorites"
+        android:title="@string/action_my_favs"
+        android:icon="@drawable/ic_favorite_white_24dp" />
+    <item android:id="@+id/action_login"
+        android:title="@string/menu_login"
+        android:icon="@drawable/ic_account_circle_white_24dp" />
 </menu>
