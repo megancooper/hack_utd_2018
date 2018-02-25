@@ -34,4 +34,5 @@
     <string name="owner">Owner</string>
     <string name="add_truck">Add Truck</string>
     <string name="back_to_owner_screen">Back to Owner Screen</string>
+    <string name="truck_logo">Truck Logo</string>
 </resources>
