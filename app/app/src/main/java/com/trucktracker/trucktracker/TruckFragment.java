@@ -15,11 +15,11 @@ public class TruckFragment extends Fragment {
     public static Fragment newInstance(Truck truck) {
         Fragment fragment = new TruckFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("name",truck.getName());
-        bundle.putString("address",truck.getName());
-        bundle.putString("schedule",truck.getName());
-        bundle.putString("phone",truck.getName());
-        bundle.putString("owner",truck.getName());
+        bundle.putString("name",truck.getName()==null ? "" : truck.getName());
+        bundle.putString("address",truck.getAddress()==null ? "" : truck.getAddress());
+        bundle.putString("schedule",truck.getSchedule()==null ? "" : truck.getSchedule());
+        bundle.putString("phone",truck.getPhone()==null ? "" : truck.getPhone());
+        bundle.putString("owner",truck.getOwner()==null ? "" : truck.getOwner());
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -32,8 +32,8 @@ public class TruckFragment extends Fragment {
 
         // TODO: get image(s)
         truckName = v.findViewById(R.id.truck_name);
-        truckAddress = v.findViewById(R.id.et_address);
-        truckSchedule = v.findViewById(R.id.et_schedule);
+        truckAddress = v.findViewById(R.id.truck_location);
+        truckSchedule = v.findViewById(R.id.truck_hours);
 
         Bundle bundle = this.getArguments();
         Truck truck = new Truck(bundle.getString("name"),

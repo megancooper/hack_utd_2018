@@ -17,8 +17,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class SearchResultsFragment extends Fragment {
+
+    private RecyclerView recyclerView;
+    private Fragment myRef;
 
     public static Fragment newInstance(String query) {
         Bundle bundle = new Bundle();
@@ -32,73 +39,42 @@ public class SearchResultsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Bundle bundle = getArguments();
-        String query = bundle.getString("query");
-
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance()
-                .getReference();
-
-        Query trucksQuery = mDatabase.child("trucks")
-                .orderByChild("name");
-
-        FirebaseRecyclerOptions<Truck> options =
-                new FirebaseRecyclerOptions.Builder<Truck>()
-                        .setQuery(trucksQuery, Truck.class)
-                        .build();
-
-        TruckAdapter truckAdapter = new TruckAdapter(options);
-
-        // Inflate the layout for this fragment
+        this.myRef = this;
         View v = inflater.inflate(R.layout.search_results_fragment, container, false);
 
-        // setup recycler view in this fragment
-        RecyclerView recyclerView = v.findViewById(R.id.list_of_queried_trucks);
+        Bundle bundle = getArguments();
+        // TODO: String query = bundle.getString("query");
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("trucks");
+
+        recyclerView = v.findViewById(R.id.list_of_queried_trucks);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(truckAdapter);
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                ArrayList<Truck> values = new ArrayList<>();
+                for (DataSnapshot ds: dataSnapshot.getChildren()) {
+                    values.add(ds.getValue(Truck.class));
+                }
+                recyclerView.setAdapter(new RecyclerViewAdapter(values, myRef));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                System.out.println("Failed to read value." + error.toException());
+            }
+        });
 
         return v;
     }
 
-    public class TruckAdapter extends FirebaseRecyclerAdapter<Truck, TruckHolder> {
-
-        public TruckAdapter(FirebaseRecyclerOptions<Truck> options) {
-            super(options);
-        }
-
-
-        @Override
-        public TruckHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            // Create a new instance of the ViewHolder, in this case we are using a custom
-            // layout called R.layout.message for each item
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.food_truck_card_view, parent, false);
-
-            // TODO: images
-            TextView truckName = view.findViewById(R.id.truck_name);
-            TextView truckType = view.findViewById(R.id.truck_type);
-
-            return new TruckHolder(view, truckName, truckType);
-        }
-
-        @Override
-        protected void onBindViewHolder(TruckHolder holder, int position, Truck model){
-            holder.truckName.setText(model.getName());
-            // TODO: holder.truckType.setText(model.getType());
-            holder.truckType.setText("Enter food type here");
-        }
-
-    }
-
-    private static class TruckHolder extends RecyclerView.ViewHolder {
-        private TextView truckName, truckType;
-        TruckHolder(View itemView, TextView truckName, TextView truckType) {
-            super(itemView);
-            this.truckName = truckName;
-            this.truckType = truckType;
-        }
-    }
 
 }
