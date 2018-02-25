@@ -7,8 +7,22 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.concurrent.Executor;
 
 // This is the only activity in the entire application
 // the app works by exchanging fragments
@@ -17,9 +31,13 @@ public class MainActivity extends FragmentActivity {
     private ViewPager appViewPager; // controls the navigation between fragments
     private FragAdapter fragmentAdapter; // adapter to manage fragments
     private BottomNavigationView bottomNavBar; // bottom navigation bar
+    public static boolean isLoggedIn;
+
+    FragmentManager fragmentManager;
+
 
     // reference integers
-    private static final int SEARCH = 0, FAVORITES = 1, LOGIN = 2;
+    private static final int SEARCH = 0, FAVORITES = 1, ACCOUNT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +45,7 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         // get a FragmentManager to access and manage fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         // get ViewPager object to switch between fragment
         fragmentAdapter = new FragAdapter(fragmentManager);
@@ -45,7 +63,7 @@ public class MainActivity extends FragmentActivity {
                         appViewPager.setCurrentItem(FAVORITES);
                         break;
                     case R.id.action_login:
-                        appViewPager.setCurrentItem(LOGIN);
+                        appViewPager.setCurrentItem(ACCOUNT);
                         break;
                     case R.id.action_search:
                         appViewPager.setCurrentItem(SEARCH);
@@ -78,7 +96,7 @@ public class MainActivity extends FragmentActivity {
                 case FAVORITES:
                     frag = FavoritesFragment.newInstance();
                     break;
-                case LOGIN:
+                case ACCOUNT:
                     frag = AccountFragment.newInstance();
                     break;
                 default:
@@ -87,5 +105,4 @@ public class MainActivity extends FragmentActivity {
             return frag;
         }
     }
-
 }

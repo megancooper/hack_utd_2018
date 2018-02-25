@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Truck Tracker</string>
     <string name="menu_search">Search</string>
-    <string name="menu_login">Login</string>
+    <string name="menu_login">Account</string>
     <string name="action_my_favs">Favorites</string>
     <string name="truck_tracker">Truck Owner Sign In</string>
     <string name="email">email</string>
@@ -17,7 +17,6 @@
     <string name="edit_existing_trucks">Edit Existing Trucks</string>
     <string name="send_an_update">Send An Update</string>
     <string name="name">name</string>
-    <string name="back_to_owner_screen">Back to Owner Screen</string>
     <string name="search_by_name">Search by name:</string>
     <string name="enter_food_truck_name">Enter food truck name</string>
     <string name="search_in_maps">Search in Maps</string>
@@ -34,4 +33,5 @@
     <string name="phone_number">Phone Number</string>
     <string name="owner">Owner</string>
     <string name="add_truck">Add Truck</string>
+    <string name="back_to_owner_screen">Back to Owner Screen</string>
 </resources>

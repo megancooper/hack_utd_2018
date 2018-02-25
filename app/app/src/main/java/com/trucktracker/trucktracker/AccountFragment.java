@@ -39,7 +39,7 @@ public class AccountFragment extends Fragment {
 		 */
         // Instantiate Firebase Authentication Instance
         final FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() == null) {
+		if (auth.getCurrentUser() == null) {
             transaction.replace(R.id.account_layout, new LoginFragment());
         }
         else {

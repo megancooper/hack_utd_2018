@@ -1,4 +1,3 @@
-
 package com.trucktracker.trucktracker;
 
 
