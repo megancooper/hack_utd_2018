@@ -9,15 +9,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by JEFRI SINGH(ஜெப்ரி சிங்) on 11/4/2016.
- * Organization "The Tuna Group" - Kerala
- */
-
+// Created by JEFRI SINGH(ஜெப்ரி சிங்) on 11/4/2016.
+// Organization "The Tuna Group" - Kerala
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.TruckHolder> {
     private ArrayList<Truck> values;
     private Fragment parentFragment;
 
+    // RecyclerView that is connected with Firebase
+    // values is an arraylist of Trucks that are connected to firebase
     public RecyclerViewAdapter(ArrayList<Truck> values, Fragment parentFragment) {
         this.values = values;
         this.parentFragment = parentFragment;
@@ -37,6 +36,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Truck
         return new TruckHolder(view, truckName, truckType);
     }
 
+    // when there are items to display, instantiate and define them
     @Override
     public void onBindViewHolder(TruckHolder holder, int position) {
         final int i = position;
@@ -60,6 +60,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Truck
         return values.size();
     }
 
+    // holds the food truck card
     public class TruckHolder extends RecyclerView.ViewHolder {
 
         private View itemView;

@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +65,8 @@ public class SearchFragment extends Fragment {
         return v;
     }
 
+    // this is called after the PlacePicker has finished
+    // it obtains the information and ports it to a SearchResultsFragment TODO: incomplete
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST && resultCode == Activity.RESULT_OK) {
@@ -74,7 +74,6 @@ public class SearchFragment extends Fragment {
             final CharSequence name = place.getName();
             final CharSequence address = place.getAddress();
             final CharSequence phoneNumber = place.getPhoneNumber();
-            final CharSequence rating = Float.toString(place.getRating());
             String attributions = (String) place.getAttributions();
             if (attributions == null)
                 attributions = "";
@@ -83,7 +82,18 @@ public class SearchFragment extends Fragment {
             Log.d("PickerInfo",name.toString());
             Log.d("PickerInfo",address.toString());
             Log.d("PickerInfo",phoneNumber.toString());
-            Log.d("PickerInfo",rating.toString());
+
+            Truck t = new Truck();
+            t.setName(name.toString());
+            t.setAddress(address.toString());
+            t.setPhone(phoneNumber.toString());
+
+            Fragment resultsFrag = SearchResultsFragment.newInstance(t);
+
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.search_container, resultsFrag)
+                    .addToBackStack(null)
+                    .commit();
 
         } else {
             super.onActivityResult(requestCode, resultCode, data);

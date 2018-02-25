@@ -1,6 +1,6 @@
 package com.trucktracker.trucktracker;
 
-
+// implementation of a truck object, used to talk with firebase
 public class Truck {
 
     public Truck(String name, String address, String schedule, String phone, String owner){
