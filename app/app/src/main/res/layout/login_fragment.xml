@@ -2,6 +2,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_layout"
     android:orientation="vertical"
@@ -18,6 +19,12 @@
         android:text="@string/truck_tracker"
         android:textAlignment="center"
         android:textSize="25sp"/>
+
+    <ImageView
+        android:layout_width="252dp"
+        android:layout_height="172dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/truck_tracker_logo" />
 
     <EditText
         android:id="@+id/email"
