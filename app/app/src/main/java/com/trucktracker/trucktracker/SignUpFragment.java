@@ -6,38 +6,44 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
+import java.util.concurrent.Executor;
 
-public class LoginFragment extends Fragment {
+/**
+ * Created by megan on 2/24/18.
+ */
 
-    private View loginView;
+public class SignUpFragment extends Fragment {
+
+    private View signupView;
+    private FirebaseAuth auth;
 
     public static Fragment newInstance() {
-        return new LoginFragment();
+        return new SignUpFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        loginView = inflater.inflate(R.layout.login_fragment, container, false);
+        signupView = inflater.inflate(R.layout.signup_fragment, container, false);
 
-        Button button = (Button) loginView.findViewById(R.id.loginButton);
-        button.setOnClickListener(new View.OnClickListener()
+        Button signupBtn = (Button) signupView.findViewById(R.id.signupButton);
+        signupBtn.setOnClickListener(new View.OnClickListener()
         {
-
             /*
              * When the user clicks the Login button,
              * we use the instantiated Firebase authentication
@@ -55,75 +61,76 @@ public class LoginFragment extends Fragment {
                 // Instantiate Firebase Authentication Instance
                 final FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                EditText Email =(EditText) getView().findViewById(R.id.email);
-                EditText Pass = (EditText) getView().findViewById(R.id.password);
+                EditText Email =(EditText) getView().findViewById(R.id.newEmail);
+                EditText Pass = (EditText) getView().findViewById(R.id.newPassword);
+                EditText User = (EditText) getView().findViewById(R.id.newUsername);
                 String email = Email.getText().toString();
                 String password = Pass.getText().toString();
+                final String username = User.getText().toString();
 
-                if (email.isEmpty() || password.isEmpty()) {
+                if (email.isEmpty() || password.isEmpty() || username.isEmpty()) {
                     Toast.makeText(getActivity(), "Please fill in both your email and password.",
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    auth.signInWithEmailAndPassword(email, password)
+                    auth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
-                                        Log.d("LOGIN", "signInWithEmail:success");
+                                        Log.d("SIGNUP", "createUserWithEmail:success");
                                         FirebaseUser user = auth.getCurrentUser();
+                                        boolean useDefaultName = false;
 
-                                        Toast.makeText(getActivity(), "Login Successful!",
+                                        // Setup User Display Name
+                                        // as their requested username
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(username).build();
+
+                                        user.updateProfile(profileUpdates);
+
+                                        Toast.makeText(getActivity(), "Succeeded In Created New Account!",
                                                 Toast.LENGTH_SHORT).show();
 
                                         // TODO Load Truck Screen
 
                                     } else {
                                         // If sign in fails, display a message to the user.
-                                        Log.w("LOGIN", "signInWithEmail:failure", task.getException());
-                                        Toast.makeText(getActivity(), "Authentication failed.",
+                                        Log.w("SIGNUP", "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(getActivity(), "Failed to create a new account.",
                                                 Toast.LENGTH_SHORT).show();
 
                                     }
+
                                 }
                             });
                 }
             }
         });
 
-
         /*
-         * Creates onclick function for the hyperlink
-         * that switches between the Login and Signup
-         * screen
+         * Add functionality for switching the
+         * fragment screen
          */
-        TextView switchFrag = (TextView) loginView.findViewById(R.id.loginlink);
+        TextView switchScreen = (TextView) signupView.findViewById(R.id.signuplink);
 
-        switchFrag.setOnClickListener(new View.OnClickListener() {
+        switchScreen.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 FragmentTransaction trans = getFragmentManager()
                         .beginTransaction();
-				/*
-				 * IMPORTANT: We use the "account frame" defined in
-				 * "account_fragment.xml" as the reference to replace fragment
-				 */
-                trans.replace(R.id.account_layout, new SignUpFragment());
-
-				/*
-				 * IMPORTANT: The following lines allow us to add the fragment
-				 * to the stack and return to it later, by pressing back
-				 */
+                trans.replace(R.id.account_layout, new LoginFragment());
                 trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 trans.addToBackStack(null);
                 trans.commit();
+
             }
         });
 
 
-        return loginView;
+        return signupView;
     }
 
     @Override
@@ -131,5 +138,4 @@ public class LoginFragment extends Fragment {
         // in outState, put the information to save: strings, ints, etc.
         super.onSaveInstanceState(outState);
     }
-
 }
