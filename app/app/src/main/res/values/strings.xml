@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Truck Tracker</string>
+    <string name="truck_tracker">Truck Tracker</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="create_an_account"><u>Create an Account</u></string>
+    <string name="welcome_to_trucktracker">Welcome to TruckTracker</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="back_to_login_page"><u>Back to Login Page</u></string>
 </resources>
